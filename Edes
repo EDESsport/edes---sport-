@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EDES Sport | Catálogo</title>
+  <meta name="description" content="EDES Sport - Catálogo de artículos deportivos. Lo más importante eres tú." />
+  <style>
+    :root{
+      --bg:#0b0f19; --card:#11182a; --text:#e8eefc; --muted:#a9b6d3;
+      --accent:#56c2ff; --line:rgba(255,255,255,.08);
+      --ok:#19d38b; --warn:#ffcc66;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(86,194,255,.25), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(25,211,139,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px; margin:0 auto; padding:24px}
+    header{
+      display:flex; gap:16px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      padding:18px 18px 12px; border:1px solid var(--line); border-radius:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      backdrop-filter: blur(6px);
+    }
+    .brand h1{margin:0; font-size:28px; letter-spacing:.4px}
+    .brand p{margin:6px 0 0; color:var(--muted)}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px; border-radius:999px; border:1px solid var(--line);
+      background: rgba(255,255,255,.03); color:var(--muted); font-size:14px;
+    }
+    .dot{width:10px; height:10px; border-radius:50%; background:var(--ok); box-shadow:0 0 0 4px rgba(25,211,139,.15)}
+    .controls{
+      display:flex; gap:10px; flex-wrap:wrap; margin:18px 0;
+      padding:14px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.03);
+    }
+    input, select{
+      background:#0c1324; color:var(--text); border:1px solid var(--line); border-radius:12px;
+      padding:10px 12px; font-size:14px; outline:none;
+    }
+    input{flex:1; min-width:210px}
+    select{min-width:190px}
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .card{
+      grid-column: span 12;
+      border:1px solid var(--line); border-radius:18px; padding:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    @media (min-width:720px){ .card{grid-column: span 6;} }
+    @media (min-width:1020px){ .card{grid-column: span 4;} }
+    .top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:10px;
+    }
+    .name{font-weight:700}
+    .cat{font-size:12px; color:var(--muted); margin-top:4px}
+    .price{font-weight:800; font-size:18px}
+    .split{color:var(--muted); font-size:13px; margin-top:3px}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--line); border-radius:999px; padding:6px 10px; background:rgba(255,255,255,.02);
+    }
+    .pill.accent{color:#cfefff; border-color:rgba(86,194,255,.35); background:rgba(86,194,255,.08)}
+    .footer{
+      margin-top:18px; padding:16px; border:1px solid var(--line); border-radius:16px;
+      background:rgba(255,255,255,.03); color:var(--muted); line-height:1.45;
+    }
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 12px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,.04); color:var(--text); text-decoration:none; font-weight:600; font-size:14px;
+    }
+    .btn.primary{border-color:rgba(86,194,255,.45); background:rgba(86,194,255,.12)}
+    .warn{color:#ffe2a8}
+    .small{font-size:12px; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header id="top">
+      <div class="brand">
+        <h1>EDES Sport</h1>
+        <p><strong>Lo más importante eres tú</strong>. Catálogo de artículos deportivos con facilidad de pago.</p>
+        <p class="small">Precio único: contado o 2 quincenas (sin recargos).</p>
+      </div>
+      <div class="badge" title="Atención por pedido">
+        <span class="dot"></span>
+        Pedidos bajo solicitud • Entrega 5–7 días hábiles
+      </div>
+    </header>
+
+    <div class="controls">
+      <input id="q" type="search" placeholder="Buscar (ej. rodilleras, balón, adidas)..." />
+      <select id="cat">
+        <option value="all">Todas las categorías</option>
+        <option value="proteccion">Protección</option>
+        <option value="equipo">Equipo</option>
+        <option value="tenis">Tenis</option>
+      </select>
+      <select id="sort">
+        <option value="reco">Orden recomendado</option>
+        <option value="price_asc">Precio: menor a mayor</option>
+        <option value="price_desc">Precio: mayor a menor</option>
+      </select>
+    </div>
+
+    <div id="grid" class="grid"></div>
+
+    <div class="footer">
+      <strong>Condiciones EDES Sport</strong>
+      <ul>
+        <li>Productos bajo pedido.</li>
+        <li>Pago en 2 quincenas sin recargos (mismo precio de contado).</li>
+        <li><span class="warn">Importante:</span> el primer pago se realiza al pedir el producto. El segundo pago se cubre en la siguiente quincena.</li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" id="wa" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+        <a class="btn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Ir arriba</a>
+      </div>
+      <div class="small">Sugerencia: comparte este enlace en tus grupos y fija el mensaje.</div>
+    </div>
+  </div>
+
+  <script>
+    // WhatsApp EDES Sport (México: 52 + 1 + 10 dígitos)
+    const WHATSAPP_NUMBER = "5214811017794";
+
+    const products = [
+      // Protección
+      { id: 1, name: "Rodilleras Mizuno (alto impacto)", cat:"proteccion", price: 550, split: 275, tags:["Protección","Voleibol"], reco: 1 },
+      { id: 2, name: "Rodilleras deportivas (económicas)", cat:"proteccion", price: 280, split: 140, tags:["Entrenamiento"], reco: 2 },
+      { id: 3, name: "Tobillera de compresión", cat:"proteccion", price: 270, split: 135, tags:["Soporte"], reco: 3 },
+      { id: 4, name: "Mangas UV (6 pares)", cat:"proteccion", price: 320, split: 160, tags:["Pack","Protección solar"], reco: 4 },
+
+      // Equipo
+      { id: 5, name: "Balón de voleibol", cat:"equipo", price: 420, split: 210, tags:["Juego/Entrenamiento"], reco: 1 },
+      { id: 6, name: "Mochila deportiva con compartimento", cat:"equipo", price: 380, split: 190, tags:["Zapatos","Ropa mojada"], reco: 2 },
+      { id: 7, name: "Balón medicinal 5 kg (COMAX)", cat:"equipo", price: 450, split: 225, tags:["Fuerza"], reco: 3 },
+      { id: 8, name: "Balón medicinal 7 kg", cat:"equipo", price: 750, split: 375, tags:["Avanzado"], reco: 4 },
+
+      // Tenis
+      { id: 9,  name: "Tenis colores (modelo artístico)", cat:"tenis", price: 1260, split: 630, tags:["Deportivo"], reco: 6 },
+      { id: 10, name: "Tenis Adidas blanco", cat:"tenis", price: 2100, split: 1050, tags:["Adidas"], reco: 2 },
+      { id: 11, name: "Tenis Adidas negro/naranja", cat:"tenis", price: 1990, split: 995, tags:["Adidas"], reco: 1 },
+      { id: 12, name: "Tenis Adidas gris/blanco", cat:"tenis", price: 2380, split: 1190, tags:["Adidas"], reco: 3 },
+      { id: 13, name: "Tenis Mizuno", cat:"tenis", price: 2500, split: 1250, tags:["Mizuno"], reco: 4 },
+      { id: 14, name: "Tenis Asics", cat:"tenis", price: 2650, split: 1325, tags:["Asics"], reco: 5 },
+    ];
+
+    const fmt = (n) => n.toLocaleString("es-MX", { style:"currency", currency:"MXN", maximumFractionDigits:0 });
+
+    const grid = document.getElementById("grid");
+    const q = document.getElementById("q");
+    const cat = document.getElementById("cat");
+    const sort = document.getElementById("sort");
+
+    function render(){
+      const term = (q.value || "").trim().toLowerCase();
+      const c = cat.value;
+      let list = products.filter(p=>{
+        const okCat = (c==="all") || (p.cat===c);
+        const okTerm = !term || (p.name.toLowerCase().includes(term) || p.tags.join(" ").toLowerCase().includes(term));
+        return okCat && okTerm;
+      });
+
+      if(sort.value==="price_asc") list.sort((a,b)=>a.price-b.price);
+      else if(sort.value==="price_desc") list.sort((a,b)=>b.price-a.price);
+      else list.sort((a,b)=> (a.cat===b.cat ? a.reco-b.reco : a.cat.localeCompare(b.cat)));
+
+      grid.innerHTML = list.map(p=>`
+        <div class="card">
+          <div class="top">
+            <div>
+              <div class="name">${p.name}</div>
+              <div class="cat">${labelCat(p.cat)}</div>
+            </div>
+            <div style="text-align:right">
+              <div class="price">${fmt(p.price)}</div>
+              <div class="split">o 2 pagos de ${fmt(p.split)}</div>
+            </div>
+          </div>
+          <div class="pillrow">
+            <span class="pill accent">2 quincenas sin recargos</span>
+            ${p.tags.map(t=>`<span class="pill">${t}</span>`).join("")}
+          </div>
+          <div class="cta" style="margin-top:12px">
+            <a class="btn primary" target="_blank" rel="noopener"
+               href="${waLink(p)}">Pedir este producto</a>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function labelCat(c){
+      if(c==="proteccion") return "Protección";
+      if(c==="equipo") return "Equipo";
+      if(c==="tenis") return "Tenis";
+      return c;
+    }
+
+    function waLink(p){
+      const msg =
+`Hola, me interesa este producto de EDES Sport:
+- ${p.name}
+- Precio: ${fmt(p.price)} (o 2 pagos de ${fmt(p.split)})
+¿Me confirmas disponibilidad y tiempo de entrega?`;
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    }
+
+    // Botón general WhatsApp
+    document.getElementById("wa").href =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero el catálogo de EDES Sport y hacer un pedido. ¿Me ayudas?")}`;
+
+    [q,cat,sort].forEach(el=>el.addEventListener("input", render));
+    render();
+  </script>
+</body>
+</html>
